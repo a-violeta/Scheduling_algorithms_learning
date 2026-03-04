@@ -1,0 +1,41 @@
+FastAPI – nivel minim
+Ai nevoie doar de:
+
+cum definești un endpoint (@app.get, @app.post)
+
+cum primești date de la utilizator
+
+cum returnezi un JSON
+
+SQLite – nivel minim
+cum creezi o tabelă
+
+cum inserezi exerciții
+
+cum citești exerciții
+
+Poți folosi chiar și sqlite3 din Python, fără ORM:
+
+import sqlite3
+
+conn = sqlite3.connect("exercises.db")
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM exercises")
+
+Algoritmii de planificare
+Aici ești deja confortabil. Ai nevoie doar să:
+
+primești lista de procese
+
+calculezi waiting time mediu
+
+generezi Gantt chart (ca listă de intervale)
+
+Un frontend minimal
+La început poate fi doar:
+
+un formular HTML
+
+un buton „Verifică”
+
+un div unde afișezi rezultatul
