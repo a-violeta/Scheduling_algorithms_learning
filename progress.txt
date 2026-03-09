@@ -1,6 +1,4 @@
 algoritmii de process scheduling:
- - priority
- - priority with rr
  - lottery
  - rm
  - edf
@@ -89,4 +87,7 @@ rezultat:
   ]
 }
 
-priority sa fie 2 variante?
+endpoint general?
+generare grafic
+bd
+interfata
