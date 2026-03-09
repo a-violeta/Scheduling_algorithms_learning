@@ -1,9 +1,5 @@
 algoritmii de process scheduling:
- - fcfs
- - sjf
- - sjf preemp
  - priority
- - rr
  - priority with rr
  - lottery
  - rm
@@ -63,7 +59,7 @@ rezultat:
     },
     {
       "pid": "p1",
-      "start": 3, //de unde asta? mai conteaza de fapt? nu prea
+      "start": 3, //de unde asta? mai conteaza de fapt? nu prea. asa face la mai multe
       "finish": 13,
       "waiting_time": 3,
       "turnaround_time": 13
