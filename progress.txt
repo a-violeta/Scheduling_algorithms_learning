@@ -19,3 +19,76 @@ algoritmii de disk scheduling:
 
 algoritmii de paging:
 ...
+
+sjf preemptiv:
+[
+  {
+    "pid": "p1",
+    "arrival_time": 0,
+    "burst_time": 10,
+    "priority": 0,
+    "quantum": 0
+  },
+  {
+    "pid": "p2",
+    "arrival_time": 1,
+    "burst_time": 1,
+    "priority": 0,
+    "quantum": 0
+  },
+  {
+    "pid": "p3",
+    "arrival_time": 2,
+    "burst_time": 2,
+    "priority": 0,
+    "quantum": 0
+  }
+]
+rezultat:
+{
+  "results": [
+    {
+      "pid": "p2",
+      "start": 1,
+      "finish": 2,
+      "waiting_time": 0,
+      "turnaround_time": 1
+    },
+    {
+      "pid": "p3",
+      "start": 2,
+      "finish": 4,
+      "waiting_time": 0,
+      "turnaround_time": 2
+    },
+    {
+      "pid": "p1",
+      "start": 3, //de unde asta? mai conteaza de fapt? nu prea
+      "finish": 13,
+      "waiting_time": 3,
+      "turnaround_time": 13
+    }
+  ],
+  "gantt": [
+    {
+      "process": "p1",
+      "start": 0,
+      "finish": 1
+    },
+    {
+      "process": "p2",
+      "start": 1,
+      "finish": 2
+    },
+    {
+      "process": "p3",
+      "start": 2,
+      "finish": 4
+    },
+    {
+      "process": "p1",
+      "start": 4,
+      "finish": 13
+    }
+  ]
+}
