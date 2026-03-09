@@ -1,41 +1,58 @@
-FastAPI – nivel minim
-Ai nevoie doar de:
+# Structura
 
-cum definești un endpoint (@app.get, @app.post)
+alg_so/
+│
+├── main.py
+├── routers/
+│     └── scheduling.py
+├── algorithms/
+│     ├── fcfs.py
+│     ├── sjf.py
+│     ├── priority.py
+│     └── rr.py
+├── models/
+│     └── process.py
+├── progress.txt
+└── venv/
 
-cum primești date de la utilizator
+## Modelul de date pt un proces
 
-cum returnezi un JSON
+`models/process.py`
+ - id, burst time, arrival time, priority, quantum
+ - folosim Pydantic pt validare
 
-SQLite – nivel minim
-cum creezi o tabelă
+# **FastAPI**
 
-cum inserezi exerciții
+`routers/scheduling.py`
+ - endpoint (@app.get, @app.post)
+ - date de la utilizator
+ - apelam una din functiile din algorithms
+ - returnam un JSON
 
-cum citești exerciții
+# **SQLite**
+
+ - creare tabele
+ - inserare date din exerciții
 
 Poți folosi chiar și sqlite3 din Python, fără ORM:
 
-import sqlite3
+`import sqlite3
 
 conn = sqlite3.connect("exercises.db")
 cursor = conn.cursor()
-cursor.execute("SELECT * FROM exercises")
+cursor.execute("SELECT * FROM exercises")`
 
-Algoritmii de planificare
-Aici ești deja confortabil. Ai nevoie doar să:
+# **Algoritmii de planificare**
 
-primești lista de procese
+`algorithms/fcfs.py`
+`algorithms/sjf.py`
+...
+ - primești lista de procese
+ - calculezi waiting time mediu
+ - generezi Gantt chart (ca listă de intervale) adica json cu nume process, start, finish
 
-calculezi waiting time mediu
+# **Un frontend minimal**
 
-generezi Gantt chart (ca listă de intervale)
-
-Un frontend minimal
-La început poate fi doar:
-
-un formular HTML
-
-un buton „Verifică”
-
-un div unde afișezi rezultatul
+ - formular HTML
+ - buton „Verifică”
+ - div unde afișezi rezultatul
