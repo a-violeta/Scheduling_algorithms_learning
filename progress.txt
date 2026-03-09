@@ -92,3 +92,5 @@ rezultat:
     }
   ]
 }
+
+priority sa fie 2 variante?
