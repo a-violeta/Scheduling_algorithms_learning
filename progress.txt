@@ -88,6 +88,5 @@ rezultat:
 }
 
 endpoint general? ajuta doar pe backend
-generare grafic
-bd
-interfata mai frumoasa
+bd: retine ex deja stiute din examene + rez, eventual session storage?
+interfata mai frumoasa (dark mode, diferite moduluri cu ex date sau cu propriile date, introducere de date mai frumoasa)
