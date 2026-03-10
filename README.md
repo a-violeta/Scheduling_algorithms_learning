@@ -1,4 +1,8 @@
-# Structura
+# Tool that simulates OS process scheduling
+
+A **work in progress** using `FastAPI`, `SQLite`, `python` to find *average waiting time*, *turnaround time* and *Gantt chart* for various scheduling algorithms: `FCFS`, `SJF`, `Preemptive SJF`, `RR`, `Priority`, `Preemptive Priority`, `Priority with RR`.
+
+## File structure (not final)
 
 alg_so/
 │
@@ -15,44 +19,38 @@ alg_so/
 ├── progress.txt
 └── venv/
 
-## Modelul de date pt un proces
+## Process data model
 
 `models/process.py`
- - id, burst time, arrival time, priority, quantum
- - folosim Pydantic pt validare
+ - contains: id, burst time, arrival time, priority, quantum
+ - validated with Pydantic
 
 # **FastAPI**
 
 `routers/scheduling.py`
  - endpoint (@app.get, @app.post)
- - date de la utilizator
- - apelam una din functiile din algorithms
- - returnam un JSON
+ - user data
+ - call one of `algorithms/` functions
+ - return JSON
 
 # **SQLite**
 
- - creare tabele
- - inserare date din exerciții
+ - create tabels
+ - insert data from actual OS exam exercises
 
-Poți folosi chiar și sqlite3 din Python, fără ORM:
-
-`import sqlite3
-
-conn = sqlite3.connect("exercises.db")
-cursor = conn.cursor()
-cursor.execute("SELECT * FROM exercises")`
-
-# **Algoritmii de planificare**
+# **Scheduling algorithms**
 
 `algorithms/fcfs.py`
 `algorithms/sjf.py`
 ...
- - primești lista de procese
- - calculezi waiting time mediu
- - generezi Gantt chart (ca listă de intervale) adica json cu nume process, start, finish
+ - receives list of processes
+ - finds average waiting time
+ - generates Gantt chart (as list) json with process name (here `pid`), start and finish
 
-# **Un frontend minimal**
+# **UI**
 
- - formular HTML
- - buton „Verifică”
- - div unde afișezi rezultatul
+ - HTML form
+ - minimal styling with `CSS`, `JavaScript`
+ - button for running code (eventually when the exercises are added, have a `verify` button too)
+ - div for showing result
+ - so far, hasn't been translated into english
