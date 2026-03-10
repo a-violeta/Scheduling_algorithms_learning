@@ -90,4 +90,4 @@ rezultat:
 endpoint general?
 generare grafic
 bd
-interfata
+interfata mai frumoasa
