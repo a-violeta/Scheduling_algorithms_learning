@@ -39,7 +39,7 @@
     <!--<pre id="output"></pre>-->
 
     <h2>Gantt Chart</h2>
-    <canvas id="ganttChart" width="900" height="300"></canvas>
+    <canvas id="ganttChart" width="900" height="80"></canvas>
 
     <script>
         let chart = null;
@@ -69,67 +69,100 @@
         }
 
         function drawGantt(ganttData) {
-    const ctx = document.getElementById("ganttChart").getContext("2d");
+            const ctx = document.getElementById("ganttChart").getContext("2d");
 
-    if (chart) {
-        chart.destroy();
-    }
+            if (chart) {
+                chart.destroy();
+            }
 
-    // calculăm cel mai mare finish pentru a seta capătul axei X
-    const maxFinish = Math.max(...ganttData.map(item => item.finish));
+            const maxFinish = Math.max(...ganttData.map(item => item.finish));
 
-    const data = ganttData.map(item => ({
-        x: [item.start, item.finish],   // interval [start, finish]
-        y: item.process
-    }));
+            // Pregătim datele ca intervale [start, finish]
+            const data = ganttData.map(item => ({
+                x: [item.start, item.finish],
+                y: "Timeline",
+                label: item.process
+            }));
 
-    const colors = {};
-    ganttData.forEach(item => {
-        if (!colors[item.process]) {
-            colors[item.process] = "#" + Math.floor(Math.random()*16777215).toString(16);
-        }
-    });
+            // Culori consistente per proces
+            const colors = {};
+            ganttData.forEach(item => {
+                if (!colors[item.process]) {
+                    colors[item.process] = "#" + Math.floor(Math.random()*16777215).toString(16);
+                }
+            });
 
-    chart = new Chart(ctx, {
-        type: "bar",
-        data: {
-            datasets: [{
-                label: "Execution",
-                data: data,
-                backgroundColor: data.map(d => colors[d.y]),
-                borderColor: "black",
-                borderWidth: 1
-            }]
-        },
-        options: {
-            indexAxis: "y",
-            parsing: {
-                xAxisKey: 'x',
-                yAxisKey: 'y'
-            },
-            scales: {
-                x: {
-                    type: "linear",
-                    beginAtZero: true,
-                    max: maxFinish,
-                    ticks: {
-                        stepSize: 1,
-                        callback: function(value) {
-                            return Number.isInteger(value) ? value : "";
+            // Plugin pentru text în interiorul barelor
+            const labelPlugin = {
+                id: "labelPlugin",
+                afterDatasetsDraw(chart) {
+                    const { ctx } = chart;
+
+                    chart.data.datasets[0].data.forEach((bar, index) => {
+                        const meta = chart.getDatasetMeta(0).data[index];
+
+                        // coordonatele reale ale barei
+                        const start = bar.x[0];
+                        const finish = bar.x[1];
+                        const centerX = chart.scales.x.getPixelForValue((start + finish) / 2);
+                        const centerY = meta.y;
+
+                        ctx.save();
+                        ctx.fillStyle = "white";
+                        ctx.font = "bold 14px Arial";
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "middle";
+                        ctx.fillText(bar.label, centerX, centerY);
+                        ctx.restore();
+                    });
+                }
+            };
+
+            chart = new Chart(ctx, {
+            type: "bar",
+                data: {
+                    datasets: [{
+                        label: "Execution",
+                        data: data,
+                        backgroundColor: data.map(d => colors[d.label]),
+                        borderColor: "black",
+                        borderWidth: 1,
+                        barPercentage: 1.0,
+                        categoryPercentage: 1.0,
+                        barThickness: 30
+                    }]
+                },
+                options: {
+                    indexAxis: "y",
+                    parsing: {
+                        xAxisKey: 'x',
+                        yAxisKey: 'y'
+                    },
+                    scales: {
+                        y: {
+                            type: "category",
+                            labels: ["Timeline"],
+                            grid: { display: false },
+                            offset: true //elimină spațiul dintre bare
+                        },
+                        x: {
+                            type: "linear",
+                            beginAtZero: true,
+                            max: maxFinish,
+                            ticks: {
+                                stepSize: 1,
+                                callback: v => Number.isInteger(v) ? v : ""
+                            },
+                            title: { display: true, text: "Time" }
                         }
                     },
-                    title: { display: true, text: "Time" }
+                    plugins: {
+                        legend: { display: false }
+                    }
                 },
-                y: {
-                    title: { display: true, text: "Processes" }
-                }
-            },
-            plugins: {
-                legend: { display: false }
-            }
+                plugins: [labelPlugin]
+            });
         }
-    });
-}
     </script>
 </body>
 </html>
