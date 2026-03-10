@@ -1,3 +1,5 @@
+TO DO:
+
 algoritmii de process scheduling:
  - lottery
  - rm
@@ -14,7 +16,7 @@ algoritmii de disk scheduling:
 algoritmii de paging:
 ...
 
-sjf preemptiv:
+in sjf preemptiv:
 [
   {
     "pid": "p1",
@@ -38,7 +40,7 @@ sjf preemptiv:
     "quantum": 0
   }
 ]
-rezultat:
+rezultatul este:
 {
   "results": [
     {
