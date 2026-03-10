@@ -35,7 +35,7 @@ alg_so/
  - call one of `algorithms/` functions
  - return JSON
 
-# **SQLite**
+# **SQLite** (to be added)
 
  - create tabels
  - insert data from actual OS exam exercises
