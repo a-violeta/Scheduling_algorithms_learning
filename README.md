@@ -27,7 +27,7 @@ alg_so/
  - contains: id, burst time, arrival time, priority, quantum
  - validated with Pydantic
 
-# **FastAPI**
+## **FastAPI**
 
 `routers/scheduling.py`
  - endpoint (@app.get, @app.post)
@@ -35,12 +35,12 @@ alg_so/
  - call one of `algorithms/` functions
  - return JSON
 
-# **SQLite** (to be added)
+## **SQLite** (to be added)
 
  - create tabels
  - insert data from actual OS exam exercises
 
-# **Scheduling algorithms**
+## **Scheduling algorithms**
 
 `algorithms/fcfs.py`
 `algorithms/sjf.py`
@@ -49,7 +49,7 @@ alg_so/
  - finds average waiting time
  - generates Gantt chart (as list) json with process name (here `pid`), start and finish
 
-# **UI**
+## **UI**
 
  - HTML form
  - minimal styling with `CSS`, `JavaScript`
