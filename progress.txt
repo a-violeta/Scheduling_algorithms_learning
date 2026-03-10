@@ -87,7 +87,7 @@ rezultat:
   ]
 }
 
-endpoint general?
+endpoint general? ajuta doar pe backend
 generare grafic
 bd
 interfata mai frumoasa
