@@ -4,6 +4,7 @@ A **work in progress** using `FastAPI`, `SQLite`, `python` to find *average wait
 
 ## File structure (not final)
 
+```
 alg_so/
 │
 ├── main.py
@@ -18,6 +19,7 @@ alg_so/
 │     └── process.py
 ├── progress.txt
 └── venv/
+```
 
 ## Process data model
 
