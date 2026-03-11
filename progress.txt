@@ -89,6 +89,7 @@ rezultatul este:
   ]
 }
 
-endpoint general? ajuta doar pe backend
-bd: retine ex deja stiute din examene + rez, eventual session storage?
-interfata mai frumoasa (dark mode, diferite moduluri cu ex date sau cu propriile date, introducere de date mai frumoasa)
+ - afisare average waiting time si ce mai e
+ - endpoint general? ajuta doar pe backend
+ - bd: retine ex deja stiute din examene + rez, eventual session storage? input uri pt algoritmii. asta ar presupune tabele pt procese cu coloanele {id, id exercitiu, pid, arrival time, burst time, priority optional si quantum poate} sau quantum sa fie intr un tabel separat de exercitii unde avem {id exercitiu, quantum daca exista, algoritm cerut, poate si average waiting time sau ce fel de timp cere mai exact}
+ - interfata mai frumoasa (dark mode, diferite moduluri cu ex date sau cu propriile date, introducere de date mai frumoasa)
