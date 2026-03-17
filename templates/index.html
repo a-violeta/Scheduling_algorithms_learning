@@ -12,28 +12,52 @@
     <select id="algorithm">
         <option value="fcfs">FCFS</option>
         <option value="sjf">SJF</option>
-        <option value="sjf_preemptive">SJF Preemptive</option>
-        <option value="priority_non_preemptive">Priority Non-Preemptive</option>
-        <option value="priority_preemptive">Priority Preemptive</option>
+        <option value="sjf_preemptive">Preemptive SJF</option>
+        <option value="priority_non_preemptive">Non-Preemptive Priority</option>
+        <option value="priority_preemptive">Preemptive Priority</option>
         <option value="round_robin">Round Robin</option>
         <option value="priority_round_robin">Priority Round Robin</option>
     </select>
 
     <br><br>
 
-    <textarea id="processes" rows="10" cols="50">
-[
-  {"pid": "P1", "arrival_time": 0, "burst_time": 5, "priority": 2},
-  {"pid": "P2", "arrival_time": 1, "burst_time": 3, "priority": 1}
-]
-    </textarea>
+    <h3>Processes</h3>
+
+        <div id="processForm">
+            <label>PID:</label>
+            <input id="pid" type="text" placeholder="P1">
+
+            <label>Arrival Time:</label>
+            <input id="arrival" type="number" min="0">
+
+            <label>Burst Time:</label>
+            <input id="burst" type="number" min="1">
+
+            <label>Priority (optional):</label>
+            <input id="priority" type="number" min="0">
+
+            <button id="addProcessBtn">Add process</button>
+        </div>
+
+        <div id="quantumContainer" style="display: none;">
+            <label>Quantum:</label>
+            <input id="quantum" type="number" value="2">
+        </div>
+
+        <br>
+
+        <div id="processListContainer">
+            <h4>Current processes:</h4>
+            <ul id="processList"></ul>
+        </div>
+
+        <div id="warning" style="color: red; font-weight: bold; display: none;">
+            Must have at least 1 process before running!
+        </div>
+
 
     <br><br>
 
-    <label>Quantum (optional):</label>
-    <input id="quantum" type="number" value="2">
-
-    <br><br>
 
     <button onclick="runSimulation()">Run</button>
 
