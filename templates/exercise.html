@@ -1,0 +1,45 @@
+{% raw %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Exerciții Scheduling</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<h1>Exercițiu de Scheduling</h1>
+
+<div id="exercise-container">
+    <h2 id="ex-title"></h2>
+    <p id="ex-description"></p>
+
+    <h3>Procese</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>PID</th>
+                <th>Arrival</th>
+                <th>Burst</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody id="process-table"></tbody>
+    </table>
+
+    <h3>Răspunsul tău</h3>
+    <input id="user-answer" type="number" step="0.01">
+    <button onclick="checkAnswer()">Verifică</button>
+
+    <p id="feedback"></p>
+
+    <div id="gantt-container" style="display:none;">
+        <h3>Gantt Chart</h3>
+        <canvas id="ganttCanvas"></canvas>
+    </div>
+</div>
+
+<script src="/static/exercise.js"></script>
+</body>
+</html>
+{% endraw %}

@@ -48,7 +48,7 @@
 
         <div id="processListContainer">
             <h4>Current processes:</h4>
-            <ul id="processList"></ul>
+                <ul id="processList"></ul>
         </div>
 
         <div id="warning" style="color: red; font-weight: bold; display: none;">
@@ -66,6 +66,10 @@
     <div id="ganttContainer">
         <h2>Gantt Chart</h2>
         <canvas id="ganttChart" width="900" height="80"></canvas>
+        <br>
+        <div> Average waiting time: <span id="avgWaiting"></span>
+        </div>
+
     </div>
 
     <script src="/static/js/gantt.js"></script>

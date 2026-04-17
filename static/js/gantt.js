@@ -119,7 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const result = await response.json();
+        //console.log("RESULT:", result); // temporar
         drawGantt(result.gantt);
+
+        if (result.average_waiting_time !== undefined) {
+            document.getElementById("avgWaiting").textContent =
+            result.average_waiting_time.toFixed(2);
+        }
 
         document.getElementById("ganttContainer").style.display = "block";
     };
@@ -183,11 +189,11 @@ function updateProcessList() {
 
     processes.forEach((p, index) => {
         const li = document.createElement("li");
-        li.textContent = `${p.pid} — arrival: ${p.arrival_time}, burst: ${p.burst_time}, priority: ${p.priority ?? "-"}`;
+        li.textContent = `${p.pid} { Arrival Time: ${p.arrival_time}, Burst Time: ${p.burst_time}, Priority: ${p.priority ?? "-"} }`;
 
         const delBtn = document.createElement("button");
         delBtn.textContent = "Delete";
-        delBtn.style.marginLeft = "10px";
+        delBtn.style.marginLeft = "8px";
         delBtn.onclick = () => {
             processes.splice(index, 1);
             updateProcessList();
