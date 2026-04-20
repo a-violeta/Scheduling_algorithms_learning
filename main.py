@@ -20,6 +20,6 @@ templates = Jinja2Templates(directory="templates")
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/exercise")
-def exercise_page(request: Request):
-    return templates.TemplateResponse("exercise.html", {"request": request})
+@app.get("/exercise/{exercise_id}")
+def exercise_page(request: Request, exercise_id : int):
+    return templates.TemplateResponse("exercise.html", {"request": request, "exercise_id": exercise_id})

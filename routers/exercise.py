@@ -2,22 +2,21 @@ from fastapi import APIRouter
 from database import SessionLocal
 from models.db_exercise import Exercise
 from models.db_process import Process
+from models.exercise_check import ExerciseCheckRequest
 import random
 
 router = APIRouter()
 
-@router.get("/exercise/random")
-def get_random_exercise():
+@router.get("/exercise/{exercise_id}")
+def get_exercise(exercise_id: int):
     db = SessionLocal()
 
-    # luăm toate exercițiile
-    exercises = db.query(Exercise).all()
-    ex: Exercise = random.choice(exercises)
+    ex = db.query(Exercise).filter(Exercise.id == exercise_id).first()
+    if not ex:
+        return {"error": "Exercise not found"}
 
-    # luăm procesele aferente exercițiului
-    processes = db.query(Process).filter(Process.exercise_id == ex.id).all()  # type: ignore[attr-defined]
+    processes = db.query(Process).filter(Process.exercise_id == ex.id).all()
 
-    # convertim procesele în dict-uri JSON-friendly
     process_list = [
         {
             "pid": p.pid,
@@ -28,6 +27,9 @@ def get_random_exercise():
         for p in processes
     ]
 
+    # TODO: aici generăm și Gantt-ul
+    # gantt = generate_gantt(ex.algorithm, process_list, ex.quantum)
+
     return {
         "id": ex.id,
         "title": ex.title,
@@ -35,20 +37,21 @@ def get_random_exercise():
         "algorithm": ex.algorithm,
         "quantum": ex.quantum,
         "expected_avg_waiting": ex.expected_avg_waiting,
-        "processes": process_list
+        "processes": process_list,
+        # "gantt": gantt
     }
 
 from typing import cast
 
 @router.post("/exercise/check")
-def check_exercise_answer(exercise_id: int, user_answer: float):
+def check_exercise_answer(data: ExerciseCheckRequest):
     db = SessionLocal()
-    ex: Exercise | None = db.query(Exercise).filter(Exercise.id == exercise_id).first()
+    ex = db.query(Exercise).filter(Exercise.id == data.exercise_id).first()
 
     if ex is None or ex.expected_avg_waiting is None:
         return {"error": "Exercise not found or invalid"}
 
     expected = cast(float, ex.expected_avg_waiting)
-    correct = abs(expected - user_answer) < 0.001
+    correct = abs(expected - data.user_answer) < 0.001
 
     return {"correct": correct}

@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Exerciții Scheduling</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
 <h1>Exercițiu de Scheduling</h1>
 
-<div id="exercise-container">
-    <h2 id="ex-title"></h2>
+<div id="exercise-container" data-exercise-id="{{ exercise_id }}">
     <p id="ex-description"></p>
+    <small id="ex-title"></small>
 
     <h3>Procese</h3>
     <table border="1">
@@ -33,13 +33,14 @@
 
     <p id="feedback"></p>
 
-    <div id="gantt-container" style="display:none;">
-        <h3>Gantt Chart</h3>
-        <canvas id="ganttCanvas"></canvas>
+    <div id="ganttContainer" style="display:none;">
+        <h2>Gantt Chart</h2>
+        <canvas id="ganttChart" width="900" height="80"></canvas>
     </div>
+
 </div>
 
-<script src="/static/exercise.js"></script>
+<script src="/static/js/exercise.js"></script>
 </body>
 </html>
 {% endraw %}
