@@ -89,7 +89,7 @@ rezultatul este:
   ]
 }
 
- - afisare average waiting time si ce mai e
+ - afisare pt restul timpilor calculati?
  - endpoint general? ajuta doar pe backend
- - bd: foloseste ex, eventual session storage? asta presupune tabele pt procese cu coloanele {id, id exercitiu, pid, arrival time, burst time, priority optional}, quantum intr un tabel separat de exercitii unde avem {id exercitiu, quantum daca exista, algoritm cerut, poate si average waiting time sau ce fel de timp cere mai exact}
- - interfata mai frumoasa (dark mode, diferite moduluri cu ex date sau cu propriile date)
+ - bd: foloseste session storage? asta presupune tabele pt procese cu coloanele {id, id exercitiu, pid, arrival time, burst time, priority optional}, quantum intr un tabel separat de exercitii unde avem {id exercitiu, quantum daca exista, algoritm cerut, poate si average waiting time sau ce fel de timp cere mai exact}
+ - interfata mai frumoasa (dark mode, diferite moduluri de invatare)
